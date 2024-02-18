@@ -1,6 +1,7 @@
 package com.cartes.main.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +30,14 @@ public class CartesService {
 		jeuDeCartes.getCartes().forEach(carte -> {repo.save(mapper.toEntity(carte));});
 	}
 	
-	public JeuDeCartes recupererJeuDeCartes() {
+	public JeuDeCartes recupererJeuDeCartesAleatoire() {
 		JeuDeCartes jeuDeCarte = new JeuDeCartes();
 		List<CarteEntity> cartes = new ArrayList<CarteEntity>();
 		repo.findAll().forEach(cartes::add);
 		cartes.forEach(carte -> {jeuDeCarte.ajouterCarte(mapper.toDomain(carte));});
+		if(jeuDeCarte.getCartes() != null) {
+			Collections.shuffle(jeuDeCarte.getCartes());			
+		}
 		return jeuDeCarte;
 	}
 	

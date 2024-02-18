@@ -35,7 +35,7 @@ public class CartesController {
 		JeuDeCartes jeuDeCartes = new JeuDeCartes();
 		jeuDeCartes.init();
 		carteService.sauvegarderJeuDeCartes(jeuDeCartes);
-		JeuDeCartes res = carteService.recupererJeuDeCartes();
+		JeuDeCartes res = carteService.recupererJeuDeCartesAleatoire();
 
 		log.info("Jeu lu en BDD");
 		res.getCartes().forEach(carte -> {
@@ -47,7 +47,8 @@ public class CartesController {
 
 	@GetMapping("/cartes")
     public String afficherCartes(Model model) {
-        List<Carte> cartes = carteService.recupererJeuDeCartes().getCartes();
+		log.info("Debut de la lecture des cartes en base de données");
+        List<Carte> cartes = carteService.recupererJeuDeCartesAleatoire().getCartes();
         model.addAttribute("cartes", cartes);
         return "afficherCartes"; 
     }
