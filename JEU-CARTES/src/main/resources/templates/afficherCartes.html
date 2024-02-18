@@ -3,13 +3,57 @@
 <head>
     <title>Afficher Cartes</title>
     <style>
+        body {
+            background-image: url('images/background/Table.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* 100% de la hauteur de la vue */
+        }
+
+        h2 {
+            text-align: center;
+            color: #fff;
+        }
+
         ul {
             list-style-type: none;
             display: flex;
             flex-wrap: wrap;
+            padding: 0;
         }
+
         li {
             margin: 10px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
         }
     </style>
     <script>
@@ -38,7 +82,7 @@
     <h2>Liste des Cartes</h2>
     <ul th:if="${not #lists.isEmpty(cartes)}">
         <li th:each="carte : ${cartes}">
-        	<img th:src="@{${carte.path}}"/>
+            <img th:src="@{${carte.path}}" alt="Carte"/>
         </li>
     </ul>
     <button onclick="init()">Init</button>
