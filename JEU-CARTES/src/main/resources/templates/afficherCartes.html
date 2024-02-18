@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Afficher Cartes</title>
+    <style>
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        li {
+            margin: 10px;
+        }
+    </style>
+    <script>
+        function init() {
+            fetch('/init', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Initialisation terminée avec succès!');
+                } else {
+                    alert('Erreur lors de l\'initialisation');
+                }
+            });
+        }
+
+        function afficher() {
+            window.location.href = '/cartes';
+        }
+    </script>
+</head>
+<body>
+    <h2>Liste des Cartes</h2>
+    <ul th:if="${not #lists.isEmpty(cartes)}">
+        <li th:each="carte : ${cartes}">
+        	<img th:src="@{${carte.path}}"/>
+        </li>
+    </ul>
+    <button onclick="init()">Init</button>
+    <button onclick="afficher()">Afficher</button>
+</body>
+</html>
