@@ -25,11 +25,18 @@ public class CartesService {
 	@Autowired
 	private CarteMapper mapper;
 	
+	/**
+	 * sauvegarde les cartes en BDD
+	 * @param jeuDeCartes
+	 */
 	public void sauvegarderJeuDeCartes(JeuDeCartes jeuDeCartes) {
 		log.info("Enregistrement des cartes");
 		jeuDeCartes.getCartes().forEach(carte -> {repo.save(mapper.toEntity(carte));});
 	}
 	
+	/**
+	 * Récupére les cartes en BDD et les organise aléatoirement
+	 */
 	public JeuDeCartes recupererJeuDeCartesAleatoire() {
 		JeuDeCartes jeuDeCarte = new JeuDeCartes();
 		List<CarteEntity> cartes = new ArrayList<CarteEntity>();
