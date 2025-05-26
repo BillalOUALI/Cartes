@@ -1,2 +1,2 @@
 # Cartes
-Jeu de cartes
+Example project for API build
