@@ -1,2 +1,2 @@
 # Cartes
-Example project for API build
+Example project for API build with spring boot
